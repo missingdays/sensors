@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using System.Numerics;
 
 namespace Sensors.calibration
 {
     public interface ICalibration
     {
-        ISingleSensorStrategy calibrate(List<IPoint> points);
+        ISingleSensorStrategy Calibrate(List<double>[] points);
     }
 }

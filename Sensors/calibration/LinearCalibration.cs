@@ -1,14 +1,15 @@
 using System.Collections.Generic;
+using System.Numerics;
 
 namespace Sensors.calibration
 {
     public class LinearCalibration : ICalibration
     {
-        public ISingleSensorStrategy calibrate(List<IPoint> points)
+        public ISingleSensorStrategy Calibrate(List<double>[] points)
         {
-            LinearRegression regression = new LinearRegression(points);
-            ICoefficients coefficients = regression.getCoefficients();
-            return new LinearSingleSensorStrategy(coefficients.getA(), coefficients.getB());
+            LinearRegression regression = new LinearRegression(points[0], points[1]);
+            ICoefficients coefficients = regression.GetCoefficients();
+            return new LinearSingleSensorStrategy(coefficients.GetA(), coefficients.GetB());
         }
     }
 }

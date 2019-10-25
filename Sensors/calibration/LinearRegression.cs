@@ -1,22 +1,25 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 
 namespace Sensors.calibration
 {
     public class LinearRegression
     {
-        private List<IPoint> _points;
+        private List<double> _x;
+        private List<double> _y;
         
-        public LinearRegression(List<IPoint> points)
+        public LinearRegression(List<double> x, List<double> y)
         {
-            _points = points;
+            _x = x;
+            _y = y;
         }
 
-        public ICoefficients getCoefficients()
+        public ICoefficients GetCoefficients()
         {
-            double[] xVals = _points.Select(point => point.getX()).ToArray();
-            double[] yVals = _points.Select(point => point.getY()).ToArray();
+            double[] xVals = _x.ToArray();
+            double[] yVals = _y.ToArray();
             
             double sumOfX = 0;
             double sumOfY = 0;
@@ -65,12 +68,12 @@ namespace Sensors.calibration
         }
 
 
-        public double getA()
+        public double GetA()
         {
             return _a;
         }
 
-        public double getB()
+        public double GetB()
         {
             return _b;
         }
@@ -78,7 +81,7 @@ namespace Sensors.calibration
 
     public interface ICoefficients
     {
-        double getA();
-        double getB();
+        double GetA();
+        double GetB();
     }
 }
